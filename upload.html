@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publish | Void X</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><rect width='36' height='36' rx='8' fill='%237c3aed'/><text y='26' x='4' font-size='22' font-family='serif' fill='white'>Vx</text></svg>">
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-icon">⬡</div>
+    <span class="logo-text">VOID X</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#">Browse</a></li>
+    <li><a href="#">Rankings</a></li>
+    <li><a href="#">Latest</a></li>
+    <li><a href="upload.html" class="active">Publish</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn btn-ghost" onclick="openModal('auth-modal')">Sign In</button>
+    <a href="profile.html" class="nav-avatar">V</a>
+  </div>
+</nav>
+
+<!-- ── UPLOAD PAGE ── -->
+<div class="upload-page">
+  <div class="hero-badge" style="margin-bottom:1rem;">⬡ Creator Portal</div>
+  <h1 class="page-title">PUBLISH YOUR<br><span style="background:linear-gradient(135deg,var(--purple-bright),var(--glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">MANGA</span></h1>
+  <p class="page-subtitle">Share your story with millions of readers on Void X. Free forever.</p>
+
+  <!-- Basic Info -->
+  <div class="form-card">
+    <div class="form-card-title">⬡ Basic Information</div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label>Manga Title *</label>
+        <input type="text" id="manga-title" placeholder="Enter your manga title...">
+      </div>
+      <div class="form-group">
+        <label>Type *</label>
+        <select>
+          <option value="">Select type</option>
+          <option>Manga (Japanese)</option>
+          <option>Manhwa (Korean)</option>
+          <option>Manhua (Chinese)</option>
+          <option>Original</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select>
+          <option>Ongoing</option>
+          <option>Completed</option>
+          <option>Hiatus</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>Synopsis / Description *</label>
+        <textarea placeholder="Describe your manga story — hook readers in the first two sentences..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Author Name *</label>
+        <input type="text" placeholder="Your name or pen name">
+      </div>
+      <div class="form-group">
+        <label>Artist Name</label>
+        <input type="text" placeholder="Artist name (if different)">
+      </div>
+    </div>
+  </div>
+
+  <!-- Cover & Chapters -->
+  <div class="form-card">
+    <div class="form-card-title">🖼 Cover & Chapters</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Cover Image *</label>
+        <div class="cover-upload" id="cover-upload-area">
+          <div class="cover-upload-icon">📸</div>
+          <p class="cover-upload-text">Click to upload cover</p>
+          <p class="cover-upload-hint">JPG, PNG, WEBP — max 5MB · Recommended: 300×450px</p>
+        </div>
+        <input type="file" id="cover-input" accept="image/*" style="display:none">
+      </div>
+      <div class="form-group">
+        <label>Chapter 1 — Upload Pages *</label>
+        <div class="chapters-area" id="chapters-area">
+          <div style="font-size:2rem;margin-bottom:8px">📂</div>
+          <p class="cover-upload-text">Click to upload chapter pages</p>
+          <p class="cover-upload-hint">ZIP file or multiple JPG/PNG · Max 100MB</p>
+        </div>
+        <input type="file" id="chapters-input" accept=".zip,image/*" multiple style="display:none">
+      </div>
+    </div>
+  </div>
+
+  <!-- Genres & Tags -->
+  <div class="form-card">
+    <div class="form-card-title">🏷 Genres & Tags</div>
+    <div class="form-group" style="margin-bottom:1.5rem;">
+      <label>Select Genres (up to 5)</label>
+      <div class="genre-tags">
+        <div class="tag-pill">Action</div>
+        <div class="tag-pill selected">Fantasy</div>
+        <div class="tag-pill">Romance</div>
+        <div class="tag-pill">Sci-Fi</div>
+        <div class="tag-pill">Horror</div>
+        <div class="tag-pill selected">Martial Arts</div>
+        <div class="tag-pill">Drama</div>
+        <div class="tag-pill">Comedy</div>
+        <div class="tag-pill">Isekai</div>
+        <div class="tag-pill">Thriller</div>
+        <div class="tag-pill">Supernatural</div>
+        <div class="tag-pill">Slice of Life</div>
+        <div class="tag-pill">Sports</div>
+        <div class="tag-pill">Mystery</div>
+        <div class="tag-pill">Mecha</div>
+        <div class="tag-pill">Historical</div>
+        <div class="tag-pill">Psychological</div>
+        <div class="tag-pill">Harem</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Age Rating</label>
+      <select>
+        <option>All Ages</option>
+        <option>Teen (13+)</option>
+        <option>Mature (18+)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Publishing Settings -->
+  <div class="form-card">
+    <div class="form-card-title">⚙ Publishing Settings</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Release Schedule</label>
+        <select>
+          <option>Irregular</option>
+          <option>Daily</option>
+          <option>Weekly</option>
+          <option>Bi-weekly</option>
+          <option>Monthly</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Visibility</label>
+        <select>
+          <option>Public</option>
+          <option>Unlisted</option>
+          <option>Draft</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Creator Guidelines Note -->
+  <div style="background:var(--purple-dim);border:1px solid var(--purple-mid);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;font-size:0.85rem;color:var(--gray-light);line-height:1.7;">
+    <strong style="color:var(--purple-bright);">⬡ Creator Agreement:</strong> By publishing, you confirm this is your original work or you hold the rights. You agree to our <a href="#" style="color:var(--purple-bright);">Creator Guidelines</a> and <a href="#" style="color:var(--purple-bright);">Terms of Service</a>. Void X does not claim ownership of your content.
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn-ghost" onclick="showToast('Saved as draft','💾')">Save Draft</button>
+    <button class="btn btn-primary btn-lg" id="publish-btn">Publish Now ✦</button>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer" style="margin-top:4rem;">
+  <div class="footer-bottom" style="max-width:900px;">
+    <a href="index.html" class="nav-logo"><div class="logo-icon">⬡</div><span class="logo-text">VOID X</span></a>
+    <span style="font-size:0.8rem;color:var(--gray);">© 2025 Void X</span>
+  </div>
+</footer>
+
+<!-- ── AUTH MODAL ── -->
+<div class="modal-overlay" id="auth-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('auth-modal')">✕</button>
+    <div class="modal-title">SIGN IN FIRST</div>
+    <p class="modal-sub">Create an account to publish your manga</p>
+    <div class="modal-form">
+      <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="••••••••"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;" onclick="showToast('Welcome!','✦');closeModal('auth-modal')">Sign In</button>
+      <div class="modal-divider">— or —</div>
+      <button class="btn btn-outline" style="width:100%;justify-content:center;padding:12px;">Continue with Google</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shadow Monarch — Ch.210 | Void X</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><rect width='36' height='36' rx='8' fill='%237c3aed'/><text y='26' x='4' font-size='22' font-family='serif' fill='white'>Vx</text></svg>">
+  <style>
+    body { background: #000; }
+    body::before { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── READER TOP BAR ── -->
+<div class="reader-topbar">
+  <div style="display:flex;align-items:center;gap:1rem;">
+    <a href="index.html" class="btn btn-ghost" style="padding:6px 12px;">← Back</a>
+    <div class="reader-info">
+      <div class="reader-manga-name">Shadow Monarch</div>
+      <div class="reader-chapter">Chapter 210 — The Final Form</div>
+    </div>
+  </div>
+
+  <div class="reader-controls">
+    <button class="reader-nav-btn" onclick="showToast('Previous chapter','←')">← Prev</button>
+    <select class="chapter-select" onchange="showToast('Loading ch. '+this.value,'📖')">
+      <option value="210" selected>Ch. 210</option>
+      <option value="209">Ch. 209</option>
+      <option value="208">Ch. 208</option>
+      <option value="207">Ch. 207</option>
+      <option value="206">Ch. 206</option>
+    </select>
+    <button class="reader-nav-btn" onclick="showToast('Next chapter','→')">Next →</button>
+    <button class="reader-nav-btn" id="bookmark-btn" data-bookmarked="false" onclick="toggleBookmark(this,'Shadow Monarch')">🔖</button>
+  </div>
+</div>
+
+<!-- ── PAGES ── -->
+<div class="reader-pages">
+  <div class="reader-page"><img src="https://picsum.photos/seed/p1/720/1080" alt="Page 1" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p2/720/1080" alt="Page 2" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p3/720/1080" alt="Page 3" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p4/720/1080" alt="Page 4" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p5/720/1080" alt="Page 5" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p6/720/1080" alt="Page 6" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p7/720/1080" alt="Page 7" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p8/720/1080" alt="Page 8" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p9/720/1080" alt="Page 9" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p10/720/1080" alt="Page 10" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p11/720/1080" alt="Page 11" loading="lazy"></div>
+  <div class="reader-page"><img src="https://picsum.photos/seed/p12/720/1080" alt="Page 12" loading="lazy"></div>
+
+  <!-- Chapter End Card -->
+  <div style="max-width:720px;width:100%;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:3rem;text-align:center;margin:2rem auto;">
+    <div style="font-family:var(--font-display);font-size:2rem;letter-spacing:3px;margin-bottom:1rem;background:linear-gradient(135deg,var(--purple-bright),var(--glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">END OF CHAPTER 210</div>
+    <p style="color:var(--gray-light);margin-bottom:2rem;">Next chapter releases in <strong style="color:var(--purple-bright)">3 days</strong></p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <button class="btn btn-ghost" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Re-read</button>
+      <button class="btn btn-primary" onclick="showToast('Next chapter coming soon!','✦')">Subscribe for Updates</button>
+      <a href="index.html" class="btn btn-outline">Browse More</a>
+    </div>
+    <div style="margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border);">
+      <p style="font-size:0.8rem;color:var(--gray);margin-bottom:1rem;text-transform:uppercase;letter-spacing:1px;">You might also like</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="reader.html" style="display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:inherit;">
+          <img src="https://picsum.photos/seed/rift/100/140" style="border-radius:8px;width:80px;height:112px;object-fit:cover;">
+          <span style="font-size:0.78rem;font-weight:600;">The Rift King</span>
+        </a>
+        <a href="reader.html" style="display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:inherit;">
+          <img src="https://picsum.photos/seed/void/100/140" style="border-radius:8px;width:80px;height:112px;object-fit:cover;">
+          <span style="font-size:0.78rem;font-weight:600;">Void Walker</span>
+        </a>
+        <a href="reader.html" style="display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:inherit;">
+          <img src="https://picsum.photos/seed/neon/100/140" style="border-radius:8px;width:80px;height:112px;object-fit:cover;">
+          <span style="font-size:0.78rem;font-weight:600;">Neon Samurai</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BOTTOM BAR ── -->
+<div class="reader-bottombar">
+  <button class="reader-nav-btn" onclick="showToast('Previous chapter','←')">← Prev Ch.</button>
+  <div class="progress-bar">
+    <div class="progress-fill" style="width:0%"></div>
+  </div>
+  <span class="page-counter">1 / 12</span>
+  <button class="reader-nav-btn" onclick="showToast('Next chapter','→')">Next Ch. →</button>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

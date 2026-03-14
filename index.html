@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Void X — Read Manga & Manhwa</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><rect width='36' height='36' rx='8' fill='%237c3aed'/><text y='26' x='4' font-size='22' font-family='serif' fill='white'>Vx</text></svg>">
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="logo-icon">⬡</div>
+    <span class="logo-text">VOID X</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="#">Browse</a></li>
+    <li><a href="#">Rankings</a></li>
+    <li><a href="#">Latest</a></li>
+    <li><a href="upload.html">Publish</a></li>
+  </ul>
+  <div class="nav-actions">
+    <div class="search-bar">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" placeholder="Search manga...">
+    </div>
+    <!-- Logged-out state -->
+    <div id="nav-logged-out" style="display:flex;gap:0.75rem;align-items:center;">
+      <button class="btn btn-ghost" onclick="openModal('auth-modal');switchAuthTab('signin')">Sign In</button>
+      <button class="btn btn-primary" onclick="openModal('auth-modal');switchAuthTab('signup')">Join Free</button>
+    </div>
+    <!-- Logged-in state (hidden by default) -->
+    <div id="nav-logged-in" style="display:none;align-items:center;gap:0.75rem;">
+      <span id="nav-username" style="font-size:0.85rem;color:var(--gray-light);font-weight:600;"></span>
+      <a href="profile.html" id="nav-avatar" class="nav-avatar" title="My Profile">V</a>
+      <button class="btn btn-ghost" onclick="handleSignOut()" style="font-size:0.8rem;padding:6px 12px;">Sign Out</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://picsum.photos/seed/herocover/1600/900" alt="" class="hero-bg-img">
+    <div class="hero-bg-overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge fade-up fade-up-1">
+      <span>⬡</span> The Void Awaits
+    </div>
+    <h1 class="hero-title fade-up fade-up-2">
+      READ THE
+      <span class="highlight">INFINITE</span>
+      STORY
+    </h1>
+    <p class="hero-desc fade-up fade-up-3">
+      Discover thousands of manga, manhwa, and manhua. From dark fantasy to action-packed adventures — immerse yourself in another world. Publish your own stories too.
+    </p>
+    <div class="hero-stats fade-up fade-up-3">
+      <div class="stat">
+        <div class="stat-num">12K+</div>
+        <div class="stat-label">Titles</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">4.2M</div>
+        <div class="stat-label">Readers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">890K</div>
+        <div class="stat-label">Chapters</div>
+      </div>
+    </div>
+    <div class="hero-actions fade-up fade-up-3">
+      <a href="#trending" class="btn btn-primary btn-lg">Start Reading</a>
+      <a href="upload.html" class="btn btn-ghost btn-lg">Publish Manga</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURED ── -->
+<div class="section" style="padding-top:3rem;">
+  <div class="section-header">
+    <h2 class="section-title">Featured</h2>
+    <a href="#" class="section-link">View All →</a>
+  </div>
+  <div class="featured-grid">
+    <a href="reader.html" class="featured-card">
+      <img src="https://picsum.photos/seed/feat1/800/1200" alt="Shadow Monarch">
+      <div class="featured-overlay">
+        <div class="featured-type">Manhwa • Action</div>
+        <div class="featured-title">Shadow Monarch</div>
+        <div class="featured-info">
+          <span>⭐ 9.8</span>
+          <span>210 Chapters</span>
+          <span>2.1M Views</span>
+        </div>
+      </div>
+    </a>
+    <a href="reader.html" class="featured-card">
+      <img src="https://picsum.photos/seed/feat2/800/400" alt="Void Walker">
+      <div class="featured-overlay">
+        <div class="featured-type">Manhwa • Fantasy</div>
+        <div class="featured-title">Void Walker</div>
+        <div class="featured-info"><span>⭐ 9.5</span><span>88 Chapters</span></div>
+      </div>
+    </a>
+    <a href="reader.html" class="featured-card">
+      <img src="https://picsum.photos/seed/feat3/800/400" alt="Neon Samurai">
+      <div class="featured-overlay">
+        <div class="featured-type">Manga • Action</div>
+        <div class="featured-title">Neon Samurai</div>
+        <div class="featured-info"><span>⭐ 8.9</span><span>140 Chapters</span></div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- ── TRENDING ── -->
+<div class="section" id="trending">
+  <div class="section-header">
+    <h2 class="section-title">Trending Now</h2>
+    <a href="#" class="section-link">See More →</a>
+  </div>
+
+  <!-- Genre Filter -->
+  <div class="genre-scroll">
+    <div class="genre-pill active">All</div>
+    <div class="genre-pill">Action</div>
+    <div class="genre-pill">Fantasy</div>
+    <div class="genre-pill">Romance</div>
+    <div class="genre-pill">Sci-Fi</div>
+    <div class="genre-pill">Horror</div>
+    <div class="genre-pill">Martial Arts</div>
+    <div class="genre-pill">Drama</div>
+    <div class="genre-pill">Comedy</div>
+    <div class="genre-pill">Isekai</div>
+    <div class="genre-pill">Thriller</div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active">Daily</div>
+    <div class="tab">Weekly</div>
+    <div class="tab">Monthly</div>
+    <div class="tab">All Time</div>
+  </div>
+
+  <div class="cards-grid">
+    <!-- Manga Cards -->
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/shadow/300/450" alt="">
+        <div class="card-badge hot">Hot</div>
+        <div class="card-rating">⭐ 9.8</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">Shadow Monarch</div>
+      <div class="card-meta"><span>Ch. 210</span><span>Manhwa</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/void/300/450" alt="">
+        <div class="card-badge new">New</div>
+        <div class="card-rating">⭐ 9.5</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">Void Walker</div>
+      <div class="card-meta"><span>Ch. 88</span><span>Manhwa</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/dragon/300/450" alt="">
+        <div class="card-badge completed">Done</div>
+        <div class="card-rating">⭐ 9.2</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">Dragon's Last Arc</div>
+      <div class="card-meta"><span>Ch. 312</span><span>Manga</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/neon/300/450" alt="">
+        <div class="card-badge hot">Hot</div>
+        <div class="card-rating">⭐ 8.9</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">Neon Samurai</div>
+      <div class="card-meta"><span>Ch. 140</span><span>Manga</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/blood/300/450" alt="">
+        <div class="card-badge new">New</div>
+        <div class="card-rating">⭐ 8.7</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">Blood Contract</div>
+      <div class="card-meta"><span>Ch. 56</span><span>Manhwa</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/celestial/300/450" alt="">
+        <div class="card-rating">⭐ 8.5</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">Celestial Sword</div>
+      <div class="card-meta"><span>Ch. 490</span><span>Manhua</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/rift/300/450" alt="">
+        <div class="card-badge hot">Hot</div>
+        <div class="card-rating">⭐ 9.1</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">The Rift King</div>
+      <div class="card-meta"><span>Ch. 175</span><span>Manhwa</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/phantom/300/450" alt="">
+        <div class="card-rating">⭐ 8.6</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">Phantom Blade</div>
+      <div class="card-meta"><span>Ch. 230</span><span>Manga</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/gate/300/450" alt="">
+        <div class="card-badge new">New</div>
+        <div class="card-rating">⭐ 8.3</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">Gate of Stars</div>
+      <div class="card-meta"><span>Ch. 67</span><span>Manhua</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover">
+        <img src="https://picsum.photos/seed/obsidian/300/450" alt="">
+        <div class="card-rating">⭐ 8.8</div>
+        <div class="card-overlay"><div class="card-read-btn">Read Now</div></div>
+      </div>
+      <div class="card-title">Obsidian Crown</div>
+      <div class="card-meta"><span>Ch. 102</span><span>Manhwa</span></div>
+    </a>
+  </div>
+</div>
+
+<!-- ── RANKINGS + NEW RELEASES ── -->
+<div class="section">
+  <div class="two-col">
+    <!-- Rankings -->
+    <div>
+      <div class="section-header">
+        <h2 class="section-title">Top Rankings</h2>
+        <a href="#" class="section-link">Full List →</a>
+      </div>
+      <div class="rankings-list">
+        <a href="reader.html" class="rank-item">
+          <div class="rank-num top">1</div>
+          <div class="rank-cover"><img src="https://picsum.photos/seed/shadow/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Shadow Monarch</div>
+            <div class="rank-sub">Manhwa • Action • Ch.210</div>
+          </div>
+          <div class="rank-views">2.1M views<div class="rank-change up">▲ +12%</div></div>
+        </a>
+        <a href="reader.html" class="rank-item">
+          <div class="rank-num top">2</div>
+          <div class="rank-cover"><img src="https://picsum.photos/seed/dragon/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Dragon's Last Arc</div>
+            <div class="rank-sub">Manga • Adventure • Ch.312</div>
+          </div>
+          <div class="rank-views">4.3M views<div class="rank-change down">▼ -3%</div></div>
+        </a>
+        <a href="reader.html" class="rank-item">
+          <div class="rank-num top">3</div>
+          <div class="rank-cover"><img src="https://picsum.photos/seed/celestial/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Celestial Sword</div>
+            <div class="rank-sub">Manhua • Martial Arts • Ch.490</div>
+          </div>
+          <div class="rank-views">3.8M views<div class="rank-change up">▲ +5%</div></div>
+        </a>
+        <a href="reader.html" class="rank-item">
+          <div class="rank-num">4</div>
+          <div class="rank-cover"><img src="https://picsum.photos/seed/rift/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">The Rift King</div>
+            <div class="rank-sub">Manhwa • Fantasy • Ch.175</div>
+          </div>
+          <div class="rank-views">1.7M views<div class="rank-change up">▲ +22%</div></div>
+        </a>
+        <a href="reader.html" class="rank-item">
+          <div class="rank-num">5</div>
+          <div class="rank-cover"><img src="https://picsum.photos/seed/neon/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Neon Samurai</div>
+            <div class="rank-sub">Manga • Action • Ch.140</div>
+          </div>
+          <div class="rank-views">1.2M views<div class="rank-change up">▲ +8%</div></div>
+        </a>
+        <a href="reader.html" class="rank-item">
+          <div class="rank-num">6</div>
+          <div class="rank-cover"><img src="https://picsum.photos/seed/obsidian/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Obsidian Crown</div>
+            <div class="rank-sub">Manhwa • Drama • Ch.102</div>
+          </div>
+          <div class="rank-views">670K views<div class="rank-change down">▼ -1%</div></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- New Releases -->
+    <div>
+      <div class="section-header">
+        <h2 class="section-title">New Chapters</h2>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0.5rem;">
+        <a href="reader.html" class="rank-item">
+          <div class="rank-cover"><img src="https://picsum.photos/seed/void/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Void Walker</div>
+            <div class="rank-sub" style="color:var(--purple-bright)">Ch. 88 — New!</div>
+          </div>
+          <div class="rank-views">2h ago</div>
+        </a>
+        <a href="reader.html" class="rank-item">
+          <div class="rank-cover"><img src="https://picsum.photos/seed/gate/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Gate of Stars</div>
+            <div class="rank-sub" style="color:var(--purple-bright)">Ch. 67 — New!</div>
+          </div>
+          <div class="rank-views">4h ago</div>
+        </a>
+        <a href="reader.html" class="rank-item">
+          <div class="rank-cover"><img src="https://picsum.photos/seed/blood/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Blood Contract</div>
+            <div class="rank-sub">Ch. 56</div>
+          </div>
+          <div class="rank-views">6h ago</div>
+        </a>
+        <a href="reader.html" class="rank-item">
+          <div class="rank-cover"><img src="https://picsum.photos/seed/shadow/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Shadow Monarch</div>
+            <div class="rank-sub">Ch. 210</div>
+          </div>
+          <div class="rank-views">12h ago</div>
+        </a>
+        <a href="reader.html" class="rank-item">
+          <div class="rank-cover"><img src="https://picsum.photos/seed/neon/100/140" alt=""></div>
+          <div class="rank-info">
+            <div class="rank-title">Neon Samurai</div>
+            <div class="rank-sub">Ch. 140</div>
+          </div>
+          <div class="rank-views">1d ago</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── NEW ARRIVALS ── -->
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">New Arrivals</h2>
+    <a href="#" class="section-link">Browse All →</a>
+  </div>
+  <div class="cards-hscroll">
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover"><img src="https://picsum.photos/seed/arr1/300/450" alt=""><div class="card-badge new">New</div><div class="card-rating">⭐ 8.1</div><div class="card-overlay"><div class="card-read-btn">Read</div></div></div>
+      <div class="card-title">Echoes of Ash</div>
+      <div class="card-meta"><span>Ch. 3</span><span>Manhwa</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover"><img src="https://picsum.photos/seed/arr2/300/450" alt=""><div class="card-badge new">New</div><div class="card-rating">⭐ 7.9</div><div class="card-overlay"><div class="card-read-btn">Read</div></div></div>
+      <div class="card-title">Sky Drifter</div>
+      <div class="card-meta"><span>Ch. 5</span><span>Manga</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover"><img src="https://picsum.photos/seed/arr3/300/450" alt=""><div class="card-badge new">New</div><div class="card-rating">⭐ 8.4</div><div class="card-overlay"><div class="card-read-btn">Read</div></div></div>
+      <div class="card-title">Iron Wolf</div>
+      <div class="card-meta"><span>Ch. 2</span><span>Manhwa</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover"><img src="https://picsum.photos/seed/arr4/300/450" alt=""><div class="card-badge new">New</div><div class="card-rating">⭐ 7.6</div><div class="card-overlay"><div class="card-read-btn">Read</div></div></div>
+      <div class="card-title">Lunar Tides</div>
+      <div class="card-meta"><span>Ch. 8</span><span>Manhua</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover"><img src="https://picsum.photos/seed/arr5/300/450" alt=""><div class="card-badge new">New</div><div class="card-rating">⭐ 8.0</div><div class="card-overlay"><div class="card-read-btn">Read</div></div></div>
+      <div class="card-title">Crimson Throne</div>
+      <div class="card-meta"><span>Ch. 12</span><span>Manhwa</span></div>
+    </a>
+    <a href="reader.html" class="manga-card">
+      <div class="card-cover"><img src="https://picsum.photos/seed/arr6/300/450" alt=""><div class="card-badge new">New</div><div class="card-rating">⭐ 7.8</div><div class="card-overlay"><div class="card-read-btn">Read</div></div></div>
+      <div class="card-title">Hollow Grave</div>
+      <div class="card-meta"><span>Ch. 6</span><span>Manga</span></div>
+    </a>
+  </div>
+</div>
+
+<!-- ── PUBLISH CTA ── -->
+<div class="section" style="padding-top:0;">
+  <div style="background:linear-gradient(135deg, var(--purple-dim), var(--deep)); border:1px solid var(--purple-mid); border-radius:16px; padding:3rem; text-align:center; position:relative; overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%, rgba(124,58,237,0.2), transparent 70%);pointer-events:none;"></div>
+    <div style="font-size:2.5rem;margin-bottom:1rem;">⬡</div>
+    <h2 style="font-family:var(--font-display);font-size:2.5rem;letter-spacing:3px;margin-bottom:0.75rem;">CREATE YOUR STORY</h2>
+    <p style="color:var(--gray-light);max-width:500px;margin:0 auto 2rem;">Share your manga, manhwa, or manhua with millions of readers. Publishing is completely free — keep 100% creative control.</p>
+    <a href="upload.html" class="btn btn-primary btn-lg">Start Publishing →</a>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo" style="display:inline-flex; margin-bottom:0;">
+        <div class="logo-icon">⬡</div>
+        <span class="logo-text">VOID X</span>
+      </a>
+      <p class="footer-desc">Your gateway to infinite stories. Read and publish manga, manhwa, and manhua all in one place.</p>
+      <div class="footer-social">
+        <div class="social-btn">𝕏</div>
+        <div class="social-btn">💬</div>
+        <div class="social-btn">📘</div>
+        <div class="social-btn">▶</div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#">Browse All</a></li>
+        <li><a href="#">Rankings</a></li>
+        <li><a href="#">New Releases</a></li>
+        <li><a href="#">Completed</a></li>
+        <li><a href="#">Genres</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Creators</h4>
+      <ul>
+        <li><a href="upload.html">Publish Manga</a></li>
+        <li><a href="#">Creator Portal</a></li>
+        <li><a href="#">Guidelines</a></li>
+        <li><a href="#">Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Void X</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">DMCA</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Void X. All rights reserved.</span>
+    <span>Built for readers. Built by creators.</span>
+  </div>
+</footer>
+
+<!-- ── AUTH MODAL ── -->
+<div class="modal-overlay" id="auth-modal">
+  <div class="modal auth-modal-box">
+    <button class="modal-close" onclick="closeModal('auth-modal')" id="auth-close-btn">✕</button>
+
+    <!-- Tab switcher -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+    </div>
+
+    <!-- SIGN IN PANEL -->
+    <div id="panel-signin">
+      <div class="modal-title" style="margin-top:0.5rem;">ENTER THE VOID</div>
+      <p class="modal-sub">Welcome back, reader.</p>
+      <div class="modal-form">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="signin-email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="signin-password" placeholder="••••••••" autocomplete="current-password">
+        </div>
+        <div id="signin-error" class="auth-error" style="display:none;"></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;font-size:1rem;" id="signin-btn" onclick="handleSignIn()">
+          <span id="signin-btn-text">Sign In</span>
+        </button>
+        <div class="modal-divider">— or —</div>
+        <button class="btn btn-outline" style="width:100%;justify-content:center;padding:11px;gap:10px;" onclick="handleGoogleAuth()">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Continue with Google
+        </button>
+        <div class="modal-switch">New here? <a onclick="switchAuthTab('signup')" style="cursor:pointer;">Create a free account →</a></div>
+      </div>
+    </div>
+
+    <!-- SIGN UP PANEL -->
+    <div id="panel-signup" style="display:none;">
+      <div class="modal-title" style="margin-top:0.5rem;">JOIN THE VOID</div>
+      <p class="modal-sub">Create your free account.</p>
+      <div class="modal-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="signup-name" placeholder="What should we call you?" autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="signup-email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="signup-password" placeholder="Min. 6 characters" autocomplete="new-password">
+        </div>
+        <div id="signup-error" class="auth-error" style="display:none;"></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:13px;font-size:1rem;" id="signup-btn" onclick="handleSignUp()">
+          <span id="signup-btn-text">Create Account</span>
+        </button>
+        <div class="modal-divider">— or —</div>
+        <button class="btn btn-outline" style="width:100%;justify-content:center;padding:11px;gap:10px;" onclick="handleGoogleAuth()">
+          <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Continue with Google
+        </button>
+        <div class="modal-switch">Already have an account? <a onclick="switchAuthTab('signin')" style="cursor:pointer;">Sign in →</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── WELCOME OVERLAY ── -->
+<div id="welcome-overlay">
+  <div id="welcome-content">
+    <div id="welcome-hex">⬡</div>
+    <div id="welcome-greeting"></div>
+    <div id="welcome-name"></div>
+  </div>
+</div>
+
+<script src="js/supabase-auth.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
